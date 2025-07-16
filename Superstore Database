@@ -33,11 +33,11 @@ FROM superstore
 ORDER BY price DESC;
 
 -- 2. Write your own SQL query that will show a statistic about the item prices, like a sum, average, minimum, maximum, or count.
-SELECT AVG(price)
+SELECT ROUND(AVG(price),2) AS avg_price
 FROM superstore;
 
 -- 3. Write your own SQL query that will show a statistic about the price for items in the category of "Kitchen Supplies".
-SELECT AVG(price)
+SELECT ROUND(SUM(price),2)
 FROM superstore
 WHERE category = "Kitchen Supplies";
 
@@ -45,3 +45,9 @@ WHERE category = "Kitchen Supplies";
 SELECT stock_quantity, item_name
 FROM superstore
 WHERE item_name = "Cozy Throw Blanket";
+
+-- 5. How much of each item is in stock, ordered by most to least in stock?
+SELECT item_name, stock_quantity
+FROM superstore
+GROUP BY item_name
+ORDER BY stock_quantity DESC, item_name;
